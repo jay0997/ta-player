@@ -196,7 +196,7 @@
     this.root.classList.toggle('ta-watch', mode === 'watch');
     this.root.querySelectorAll('.ta-toggle button').forEach(function (b) { b.classList.toggle('on', b.dataset.m === mode); });
     if (mode === 'watch') {
-      var go = function () { self.yt.seekTo(t, true); if (was) { self.yt.setPlaybackRate(self.speed); self.yt.playVideo(); } };
+      var go = function () { self.yt.seekTo(t, true); if (was) { self.yt.setPlaybackRate(self.speed); self.yt.playVideo(); } else { self.yt.pauseVideo(); } };
       if (this.yt && this.yt.seekTo) go();
       else this.loadYT(function () {
         self.yt = new YT.Player(self.el.yt, { videoId: self.d.youtube, playerVars: { playsinline: 1, rel: 0, modestbranding: 1, start: Math.floor(t) },
