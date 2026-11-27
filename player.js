@@ -328,13 +328,13 @@
     // ignition
     // ignition: the real intro light-up (TTA_Open_Template_v2, 15 fps, 105 frames), cut to the sign
     var T, NF = 105, END = 7.0;
-    if (t < END + 0.4) { T = t; if (t >= END) this.lit = true; else if (t < 0.5) this.lit = false; this.ignAt = null; }
+    if (t < END + 0.75) { T = t; if (t >= END + 0.7) this.lit = true; else if (t < 0.5) this.lit = false; this.ignAt = null; }
     else if (this.lit) T = 99;
-    else if (playing || this.ignAt) { if (!this.ignAt) this.ignAt = now; T = 1.2 + (now - this.ignAt) / 1000 * 4; if (T >= END + 0.35) { this.lit = true; this.ignAt = null; } }
+    else if (playing || this.ignAt) { if (!this.ignAt) this.ignAt = now; T = 1.2 + (now - this.ignAt) / 1000 * 4; if (T >= END + 0.7) { this.lit = true; this.ignAt = null; } }
     else T = 0;
     this.T = T;
-    var ready = this.sheetsReady === 3, sprite = ready && T > 0.05 && T < END + 0.35;
-    var L = T >= END ? Math.min(1, (T - END) / 0.3) : (ready ? 0 : ign(IGN_T, T));
+    var ready = this.sheetsReady === 3, sprite = ready && T > 0.05 && T < END + 0.7;
+    var L = T >= END ? Math.min(1, (T - END) / 0.6) : (ready ? 0 : ign(IGN_T, T));
     if (T > 50) L = 1;
     var key2 = Math.round(L * 100) + (sprite ? 1000 : 0);
     if (this._lk !== key2) {
