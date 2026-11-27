@@ -246,7 +246,7 @@
         if (fsb && !fsb._on) { fsb._on = 1;
           var full = function () {
             if (document.fullscreenElement || document.webkitFullscreenElement) { (document.exitFullscreen || document.webkitExitFullscreen).call(document); return; }
-            if (v.requestFullscreen) v.requestFullscreen(); else if (v.webkitRequestFullscreen) v.webkitRequestFullscreen(); else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+            if (v.webkitEnterFullscreen && /iPhone|iPod/.test(navigator.userAgent)) v.webkitEnterFullscreen(); else if (v.requestFullscreen) v.requestFullscreen(); else if (v.webkitRequestFullscreen) v.webkitRequestFullscreen(); else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen();
           };
           fsb.addEventListener('click', function (e) { e.stopPropagation(); full(); });
           v.addEventListener('dblclick', full);
