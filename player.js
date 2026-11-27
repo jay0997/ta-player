@@ -226,7 +226,7 @@
       var go = function () { self.yt.seekTo(t, true); if (was) { self.yt.setPlaybackRate(self.speed); self.yt.playVideo(); } else { self.yt.pauseVideo(); } };
       if (this.yt && this.yt.seekTo) go();
       else this.loadYT(function () {
-        self.yt = new YT.Player(self.el.yt, { videoId: self.d.youtube, playerVars: { playsinline: 1, rel: 0, modestbranding: 1, start: Math.floor(t) },
+        self.yt = new YT.Player(self.el.yt, { host: 'https://www.youtube-nocookie.com', videoId: self.d.youtube, playerVars: { playsinline: 1, rel: 0, modestbranding: 1, start: Math.floor(t) },
           events: { onReady: function () { if (self.mode === 'watch') go(); },
             onStateChange: function (e) { self.ytPlaying = e.data === 1 || e.data === 3; self.setPlaying(e.data === 1 || e.data === 3); if (e.data === 1) self.closeLanding(); } } });
       });
