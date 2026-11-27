@@ -756,11 +756,21 @@
     els.forEach(function (e) { b.appendChild(e); }); d.appendChild(b); pc.appendChild(d);
   }
 
+  // Podpage sidebar under the episode: keep only the email signup, "Browse episodes by category" and "Support on"
+  function podpageSidebar(el) {
+    var row = el.closest && el.closest('.row'), sb = row && row.querySelector('.sidebar');
+    if (!sb) return;
+    Array.prototype.forEach.call(sb.querySelectorAll(':scope > .sidebar-object'), function (o) {
+      var t = (o.textContent || '').replace(/\s+/g, ' ').trim();
+      if (!/^(Browse episodes by category|Support on)/i.test(t)) o.style.setProperty('display', 'none', 'important');
+    });
+  }
+
   function boot() {
     injectCSS();
     var els = document.querySelectorAll('[data-ta-player]');
     if (!els.length && SCRIPT && SCRIPT.dataset.episode) { var e = document.createElement('div'); e.setAttribute('data-ta-player', SCRIPT.dataset.episode); SCRIPT.parentNode.insertBefore(e, SCRIPT); els = [e]; }
-    Array.prototype.forEach.call(els, function (el) { if (!el._ta) el._ta = new Player(el, el.getAttribute('data-ta-player')); try { podpageDrawer(el); } catch (e) {} });
+    Array.prototype.forEach.call(els, function (el) { if (!el._ta) el._ta = new Player(el, el.getAttribute('data-ta-player')); try { podpageDrawer(el); podpageSidebar(el); } catch (e) {} });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
   window.TAPlayer = { mount: function (el, slug) { injectCSS(); return new Player(el, slug); } };
