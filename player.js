@@ -99,7 +99,7 @@
     // main
     var main = h('div', 'ta-main'); wrap.appendChild(main);
     var stage = h('div', 'ta-stage');
-    stage.innerHTML = '<div class="ta-sign"><img class="ta-off" src="' + BASE + 'img/sign_off.webp" alt="The Tragedy Academy neon sign"><canvas class="ta-rev"></canvas><img class="ta-on" src="' + BASE + 'img/sign_on.webp" alt=""><canvas class="ta-glow"></canvas><canvas class="ta-cv"></canvas></div>' + (d.video ? '<div class="ta-video"><video class="ta-vid" playsinline preload="none"' + (d.videoPoster ? ' poster="' + esc(d.videoPoster) + '"' : '') + '></video></div>' + (d.youtube ? '<a class="ta-ytlink" href="https://youtu.be/' + esc(d.youtube) + '" target="_blank" rel="noopener">Watch on YouTube \u2197</a>' : '') : (d.youtube ? '<div class="ta-video"><div class="ta-yt"></div></div>' : ''));
+    stage.innerHTML = '<div class="ta-sign"><img class="ta-off" src="' + BASE + 'img/sign_off.webp" alt="The Tragedy Academy neon sign"><canvas class="ta-rev"></canvas><img class="ta-on" src="' + BASE + 'img/sign_on.webp" alt=""><canvas class="ta-glow"></canvas><canvas class="ta-cv"></canvas></div>' + (d.video ? '<div class="ta-video"><video class="ta-vid" playsinline preload="none"' + (d.videoPoster ? ' poster="' + esc(/^https?:/.test(d.videoPoster) ? d.videoPoster : this.dir + d.videoPoster) + '"' : '') + '></video></div>' + (d.youtube ? '<a class="ta-ytlink" href="https://youtu.be/' + esc(d.youtube) + '" target="_blank" rel="noopener">Watch on YouTube \u2197</a>' : '') : (d.youtube ? '<div class="ta-video"><div class="ta-yt"></div></div>' : ''));
     main.appendChild(stage);
     var side = h('div', 'ta-side'); main.appendChild(side);
     side.innerHTML =
