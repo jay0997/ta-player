@@ -432,7 +432,8 @@
       c.globalAlpha = o; c.fillStyle = COL[q.s]; c.beginPath(); c.arc(q.x, y, 3.4, 0, 6.283); c.fill(); c.fillStyle = '#fff'; c.beginPath(); c.arc(q.x, y, 1.6, 0, 6.283); c.fill();
       var fs = (self.narrow ? 9 + 3.5 * pop : 8 + 3.5 * pop);
       var ty = dir > 0 ? y - 13 : y + 13; if (self.narrow) { var hh2 = (q.el.offsetHeight || 16) / 2 + 2; ty = Math.max(hh2, Math.min(H - hh2, ty)); }
-      q.el.style.transform = 'translate(' + q.x.toFixed(1) + 'px,' + ty.toFixed(1) + 'px) translate(-50%,-50%)';
+      var hw = (q.el.offsetWidth || 0) / 2 + 4, tx = Math.max(hw, Math.min(W - hw, q.x));
+      q.el.style.transform = 'translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px) translate(-50%,-50%)';
       q.el.style.fontSize = fs.toFixed(1) + 'px'; q.el.style.opacity = o.toFixed(2);
     });
     // EQ tubes
